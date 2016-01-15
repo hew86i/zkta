@@ -15,6 +15,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
+        'username' => $faker->unique()->userName,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
     ];
@@ -58,7 +59,7 @@ $factory->define(App\Log::class, function (Faker\Generator $faker) {
     $arr_status = [0, 1, 2, 3];
     $arr_workcode = [1, 2, 3, 4, 5, 6, 10, 11];
     $arr_device_id = [1, 2, 3];
-    $arr_emp_id = range(1, 20);
+    $arr_emp_id = range(1, 30);
     return [
         'emp_id' => $faker->numberBetween($min = 1, $max = 20),
         'device_id' => $arr_device_id[array_rand($arr_device_id)],

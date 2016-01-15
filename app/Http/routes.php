@@ -11,8 +11,17 @@
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
+// Authentication routes...
+Route::post('/login', 'Auth\AuthController@postLogin');
+Route::get('/login', 'Auth\AuthController@getLogin');
+Route::get('/logout', 'Auth\AuthController@getLogout');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
 });
 
 Route::get('/models', function () {
